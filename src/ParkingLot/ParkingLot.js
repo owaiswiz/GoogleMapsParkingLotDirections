@@ -1,10 +1,13 @@
 import React from 'react';
+
 import MapComponent from './MapComponent';
+import ParkingSpots from './ParkingSpots';
 
 export default class ParkingLot extends React.Component {
   state = {
-    enableDrawing: true,
-    polygons: []
+    enableDrawing: this.props.enableDrawing,
+    polygons: ParkingSpots,
+    parkingLotCoOrds: [{lat: 19.018344, lng: 73.012226},{lat: 19.017030, lng: 73.013589},{lat: 19.017945, lng: 73.014431},{lat:19.019109, lng: 73.013111}]
   }
 
   handlePolygonComplete = (polygon) => {
@@ -39,7 +42,9 @@ export default class ParkingLot extends React.Component {
         mapElement={<div style={{ height: `100%` }} />}
         polygons={this.state.polygons}
         handlePolygonComplete={this.handlePolygonComplete}
-        direction={1}
+        directionMode={true}
+        direction={4}
+        parkingLotCoOrds={this.state.parkingLotCoOrds}
       />
     );
   }
